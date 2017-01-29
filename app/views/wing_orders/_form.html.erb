@@ -1,0 +1,28 @@
+<%= form_for(@wing_order) do |f| %>
+  <div class="row">
+    <%= f.label :customer_name %><br />
+    <%= f.text_field :customer_name %>
+  </div>
+
+  <div class="row">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="row">
+    <%= f.label :state %><br />
+    <% @state_collection.each do |state_array| %>
+      <%= f.option_for_select([[state_array.first, state_array.last]]) %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <label for="wing_order_quantiy">Quantity</label>
+    <% @quantity_collection.each do |quantity_array| %>
+      <input type="radio" value="<%= quantity_array.first %>" name="wing_order[quantity]" id="<%= "wing_order_quantity_#{quantity_array.first}" %>">
+      <label for="<%= "wing_order_quantity_#{quantity_array.first}" %>"><%= quantity_array.last %></label>
+    <% end %>
+  </div>
+
+  
+<% end %>
